@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import br.com.fiap.mottumap.model.dto.usuario.UsuarioRequestDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -60,5 +61,12 @@ public class Usuario implements UserDetails{
 	@Override
 	public String getUsername() {
 		return this.email;
+	}
+	
+	
+	public Usuario (UsuarioRequestDTO dto) {
+		this.nome = dto.nome();
+		this.email = dto.email();
+		this.senha = dto.senha();
 	}
 }

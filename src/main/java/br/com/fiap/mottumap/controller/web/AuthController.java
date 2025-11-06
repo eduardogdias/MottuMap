@@ -32,16 +32,20 @@ public class AuthController {
 
     @PostMapping("/cadastro")
     public String salvarCadastro(@ModelAttribute Usuario usuario, Model model) {
-    	if(usuarioRepository.findByEmail(usuario.getEmail()) != null) {
-    		model.addAttribute("usuario", usuario);
+    	
+    	if(usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
+    		System.out.println("Usuario encontrado");
     		model.addAttribute("mensagem", "Email já cadastrado");
             return "cadastro";
     	}
     	
+    	System.out.println("Usuario não encontrado");
         usuario.setSenha("{noop}" + usuario.getSenha()); 
         usuario.setRole("USER");
 
         usuarioRepository.save(usuario);
+
         return "redirect:/auth/login";
     }
+
 }

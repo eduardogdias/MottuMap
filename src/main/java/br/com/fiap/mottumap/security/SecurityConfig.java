@@ -24,8 +24,8 @@ public class SecurityConfig {
         				auth -> {   
         					
         					auth.requestMatchers("/auth/cadastro").permitAll();
-        					auth.requestMatchers(HttpMethod.POST, "/auth/cadastro").permitAll();
         					auth.requestMatchers("/auth/login").permitAll(); 
+        					auth.requestMatchers(HttpMethod.POST, "/auth/cadastro").permitAll();			
         					
         					// regras para web       					
         					auth.requestMatchers(HttpMethod.GET, "/web/*/listar").hasAnyRole("ADMIN", "USER");
@@ -36,21 +36,23 @@ public class SecurityConfig {
         					
         					// regras para api        					
         	                auth.requestMatchers(HttpMethod.POST, "/api/**").hasRole("ADMIN");
-        	                auth.requestMatchers(HttpMethod.PUT, "/api/**").hasRole("ADMIN");
+        	                auth.requestMatchers(HttpMethod.PUT, "/api/*/*").hasRole("ADMIN");
         	                auth.requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN");
         	                auth.requestMatchers(HttpMethod.GET, "/api/**").hasAnyRole("ADMIN", "USER");
-        	                
+        	               
+        					auth.requestMatchers("/h2-console").permitAll(); 
+
         	                auth.anyRequest().authenticated();
         					
         				})
-        		.httpBasic(Customizer.withDefaults()) //login via Basic Auth
-
+        		
         		.formLogin(form -> form //login via formulario na web
         				.loginPage("/auth/login")
         				.loginProcessingUrl("/auth/login")
                         .defaultSuccessUrl("/web/sensores/listar", true) 
                         .permitAll()      
                 )
+        		.httpBasic(Customizer.withDefaults()) //login via Basic Auth
         		.exceptionHandling(exception -> exception
         			    .accessDeniedHandler((request, response, accessDeniedException) -> {
         			        String uri = request.getRequestURI();
