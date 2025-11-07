@@ -3,17 +3,11 @@ package br.com.fiap.mottumap.controller.api;
 import java.util.List;
 import java.util.Optional;
 
+import br.com.fiap.mottumap.model.dto.usuario.UsuarioRequestEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.fiap.mottumap.model.dto.usuario.UsuarioMapper;
 import br.com.fiap.mottumap.model.dto.usuario.UsuarioRequestDTO;
@@ -67,5 +61,11 @@ public class UsuarioController {
 	public UsuarioResponseDTO deletar(@PathVariable Integer id) {
 		return usuarioService.deletar(id);
 	}
-	
+
+    // para a procedure:
+    @PutMapping("/{id}/email")
+    public ResponseEntity<String> atualizarEmail(@PathVariable Integer id, @RequestParam String novoEmail) {
+        usuarioService.atualizarEmail(id, novoEmail);
+        return ResponseEntity.ok("E-mail atualizado com sucesso!");
+    }
 }

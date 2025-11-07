@@ -77,6 +77,11 @@ public class UsuarioService implements UserDetailsService {
 		return usuario;
 	}
 
+    // para a procedure:
+    public void atualizarEmail(Integer id, String novoEmail) {
+        System.out.println(novoEmail + " - service");
+        usuarioRepository.atualizarEmailUsuario(id, novoEmail);
+    }
     
 }
 
