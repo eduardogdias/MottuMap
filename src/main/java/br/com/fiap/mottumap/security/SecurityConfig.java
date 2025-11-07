@@ -26,6 +26,7 @@ public class SecurityConfig {
         					auth.requestMatchers("/auth/cadastro").permitAll();
         					auth.requestMatchers("/auth/login").permitAll(); 
         					auth.requestMatchers(HttpMethod.POST, "/auth/cadastro").permitAll();			
+        					auth.requestMatchers("/css/**", "/js/**", "/img/**").permitAll();
         					
         					// regras para web       					
         					auth.requestMatchers(HttpMethod.GET, "/web/*/listar").hasAnyRole("ADMIN", "USER");
@@ -36,7 +37,7 @@ public class SecurityConfig {
         					
         					// regras para api        					
         	                auth.requestMatchers(HttpMethod.POST, "/api/**").hasRole("ADMIN");
-        	                auth.requestMatchers(HttpMethod.PUT, "/api/*/*").hasRole("ADMIN");
+        	                auth.requestMatchers(HttpMethod.PUT, "/api/**").hasRole("ADMIN");
         	                auth.requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN");
         	                auth.requestMatchers(HttpMethod.GET, "/api/**").hasAnyRole("ADMIN", "USER");
         	               

@@ -1,0 +1,119 @@
+/* ==== RESET ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* ==== BODY ==== */
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f2; /* cinza claro */
+}
+
+/* ==== CONTAINER ==== */
+.container {
+  background-color: white;
+  border: 2px solid #008080; /* verde */
+  border-radius: 10px;
+  padding: 30px 40px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  width: 450px;
+  text-align: center;
+}
+
+/* ==== TÍTULOS ==== */
+.title {
+  color: #00b031;
+  font-size: 1.8rem;
+}
+
+/* ==== LOGO ==== */
+.container img {
+  width: 180px;
+  margin-bottom: 15px;
+}
+
+/* ==== FORM ==== */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* ==== CAMPOS ==== */
+.field {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.field label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.field input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border 0.2s;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: #2ecc71;
+}
+
+/* ==== BOTÃO ==== */
+.button button {
+  background-color: #00b031;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  width: 100%;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button button:hover {
+  background-color: #008080;
+}
+
+/* ==== LINKS ==== */
+.link {
+  margin-top: 15px;
+  color: #555;
+}
+
+.link a {
+  color: #008080;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link a:hover {
+  text-decoration: underline;
+}
+
+/* ==== MENSAGENS ==== */
+.error {
+  color: #e74c3c;
+  margin-top: 10px;
+}
+
+.success {
+  color: #2ecc71;
+  margin-top: 10px;
+}
