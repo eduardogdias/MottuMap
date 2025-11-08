@@ -50,7 +50,7 @@ public class SecurityConfig {
         		.formLogin(form -> form //login via formulario na web
         				.loginPage("/auth/login")
         				.loginProcessingUrl("/auth/login")
-                        .defaultSuccessUrl("/web/sensores/listar", true) 
+                        .defaultSuccessUrl("/web/motos/listar", true)
                         .permitAll()      
                 )
         		.httpBasic(Customizer.withDefaults()) //login via Basic Auth
