@@ -15,9 +15,13 @@ DBNAME="db-$NAME"
 WEBAPP_NAME="webapp-$NAME"
 PLAN_NAME="plan-$NAME"
 RUNTIME="JAVA:17-java17"
+sku=F1
+imageACR="$NOME_ACR.azurecr.io/$NOME_REPOSITORY:latest"
+port=8080
 
 #ACI
 NOME_ACR="acr$NAME"
+NOME_REPOSITORY="repository$NAME"
 skuACR=Basic
 
 
@@ -35,5 +39,7 @@ az acr update --name $NOME_ACR --resource-group $RG --admin-enabled true
 
 echo "Criando Plano e Web App"
 az appservice plan create -n $PLAN_NAME -g $RG --location $LOCATION --sku F1 --is-linux  &&
-az webapp create -n $WEBAPP_NAME -g $RG -p $PLAN_NAME --runtime $RUNTIME
- 
+az webapp create -n $WEBAPP_NAME -g $RG -p $PLAN_NAME --deployment-container-image-name $imageACR # <- para uma imagem do ACR
+az webapp config appsettings set --resource-group $RG --name $WEBAPP_NAME --settings WEBSITES_PORT=$port
+
+# az webapp create -n $WEBAPP_NAME -g $RG -p $PLAN_NAME --runtime $RUNTIME  <- para java
