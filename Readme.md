@@ -49,7 +49,11 @@ Para acessar as telas, basta logar com um desses usuários:
 | admin@mottu.com   | 123456    | ADMIN             |
 | user@mottu.com    | 123456    | USER              |
 
-===========================
+Ao cadastrar um novo usuário, o mesmo receberá a Role de `USER` automaticamente.
+
+![](images/login.png)
+![](images/cadastroUsuario.png)
+
 
 Para acessar via Postman, coloque o Email e Senha na sessão de Basic Auth antes de cada requisição:
 
