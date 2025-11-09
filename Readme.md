@@ -11,6 +11,14 @@ Com isso, será possível acompanhar o histórico de movimentação de cada moto
 **Esta API desenvolvida com Spring Boot conta com**: um sistema de Login e Logout, usuários salvos no banco, gerenciamento de entidades pela Web, versionamento do banco de dados e mais tecnologias, acompanhe a documentação completa abaixo.
  
 ---
+
+## Arquitetura da Solução
+
+![](images/arquitetura.png)
+
+---
+
+
  
 ## Interface Web
 
@@ -18,14 +26,15 @@ Veja abaixo como ficou o resultado das telas para gerenciar cada uma das entidad
 - É possível editar ou excluir registros. 
 - O formulário de cadastro/edição conta com validação nos campos.
 
-![](images/cadastro.png)
 ![](images/listagem.png)
+![](images/cadastro.png)
+
 
 ---
 
 ## Deploy da API
 
-O Deploy e o banco de daos estão na Azure. Acesse os links abaixo e coloque o endpoint no final.
+O Deploy e o banco de dados estão na Azure. Acesse os links abaixo e coloque o endpoint no final.
 
 - Para retornar páginas ``HTML``:
 https://webapp-mottumap.azurewebsites.net/
@@ -72,7 +81,6 @@ Para acessar via Postman, coloque o Email e Senha na sessão de Basic Auth antes
 - Spring Data JPA: Acessar e manipular bancos de dados.
 - Lombok: Gerar automaticamente códigos repetitivos (mais otimizado).
 - Validation: Biblioteca de validação usada nos DTOs.
-- Oracle Driver: Banco de dados Oracle.
 - MS SQL: SQL Server na Azure.
 - Thymeleaf: Renderização de página HTML no navegador.
 - Spring Security: Autenticação e acesso aos endpoints.
@@ -95,7 +103,8 @@ Para acessar via Postman, coloque o Email e Senha na sessão de Basic Auth antes
 - Service → Implementa lógica e regras de negócio.
 - Exception → Constrói exceptions personalizadas.
 - DTO → Definição dos modelos de Request e Response de cada entidade.
- 
+- Security → Definição das regras de segurança e permissões.
+
 **2. View:**
 - Static → CSS, JS e imagens
 - Templates → Fragmentos e Páginas HTML
@@ -172,7 +181,6 @@ Para acessar via Postman, coloque o Email e Senha na sessão de Basic Auth antes
 | GET    | `/web/patios/listar`      | Lista todos os patios                           | `patio/patio-lista`      |
 | GET    | `/web/patios/cadastrar`  | Exibe o formulário de cadastro/edição           | `patio/patio-form`        |
 | GET    | `/web/patios/editar/{id}` | Exibe o formulário preenchido para edição       | `patio/patio-form`        |
-| POST   | `/web/patios/salvar`      | Cadastra pátio (novo ou edição) e redireciona      | Redirect → `/listar`      |
 | GET    | `/web/patios/excluir/{id}`| Exclui pátio e redireciona para listagem        | Redirect → `/listar`      |
  
 **2. Zona:**
@@ -182,7 +190,6 @@ Para acessar via Postman, coloque o Email e Senha na sessão de Basic Auth antes
 | GET    | `/web/zonas/listar`      | Lista todas as zonas                           | `zona/zona-lista`      |
 | GET    | `/web/zonas/cadastrar`  | Exibe o formulário de cadastro/edição           | `zona/zona-form`        |
 | GET    | `/web/zonas/editar/{id}` | Exibe o formulário preenchido para edição       | `zona/zona-form`        |
-| POST   | `/web/zonas/salvar`      | Cadastra zona (novo ou edição) e redireciona      | Redirect → `/listar`      |
 | GET    | `/web/zonas/excluir/{id}`| Exclui zona e redireciona para listagem        | Redirect → `/listar`      |
  
 **3. Moto:**
@@ -192,7 +199,6 @@ Para acessar via Postman, coloque o Email e Senha na sessão de Basic Auth antes
 | GET    | `/web/motos/listar`      | Lista todas as motos                           | `moto/moto-lista`      |
 | GET    | `/web/motos/cadastrar`  | Exibe o formulário de cadastro/edição           | `moto/moto-form`        |
 | GET    | `/web/motos/editar/{id}` | Exibe o formulário preenchido para edição       | `moto/moto-form`        |
-| POST   | `/web/motos/salvar`      | Cadastra motos (novo ou edição) e redireciona      | Redirect → `/listar`      |
 | GET    | `/web/motos/excluir/{id}`| Exclui motos e redireciona para listagem        | Redirect → `/listar`      |
  
  
@@ -203,7 +209,6 @@ Para acessar via Postman, coloque o Email e Senha na sessão de Basic Auth antes
 | GET    | `/web/sensores/listar`      | Listar todos os sensores                           | `sensor/sensor-lista`      |
 | GET    | `/web/sensores/cadastrar`  | Exibe o formulário de cadastro/edição           | `sensor/sensor-form`        |
 | GET    | `/web/sensores/editar/{id}` | Exibe o formulário preenchido para edição       | `sensor/sensor-form`        |
-| POST   | `/web/sensores/salvar`      | Cadastra sensores (novo ou edição) e redireciona      | Redirect → `/listar`      |
 | GET    | `/web/sensores/excluir/{id}`| Exclui sensor e redireciona para listagem        | Redirect → `/listar`      |
  
  
@@ -214,7 +219,6 @@ Para acessar via Postman, coloque o Email e Senha na sessão de Basic Auth antes
 | GET    | `/web/historicos/listar`      | Lista todos os historicos                           | `historico/historico-lista`      |
 | GET    | `/web/historicos/cadastrar`  | Exibe o formulário de cadastro/edição           | `historico/historico-form`        |
 | GET    | `/web/historicos/editar/{id}` | Exibe o formulário preenchido para edição       | `historico/historico-form`        |
-| POST   | `/web/historicos/salvar`      | Cadastra histórico (novo ou edição) e redireciona      | Redirect → `/listar`      |
 | GET    | `/web/historicos/excluir/{id}`| Exclui histórico e redireciona para listagem        | Redirect → `/listar`      |
  
  
@@ -274,16 +278,14 @@ Para acessar via Postman, coloque o Email e Senha na sessão de Basic Auth antes
  
 ## Instruções para Executar o Projeto
  
-1. Faça o clone desse repositório;
-2. Tenha pelo menos o Java 17 (o projeto foi desenvolvido usando essa versão);
-3. Abra ele em sua IDE de preferência;
-4. Coloque as credenciais do Oracle (usuário e senha) no application.properties;
-5. Dê umion.jav Run na classe "Sprint3Applicata";
-6. Teste as requisições no Postman/Insomnia ou acessando via Web pelo `localhost:8080`.
- 
+1. Acesse o link de Deploy;
+2. Adicione o endpoint desejado;
+3. A aplicação já está configurada para usar um banco em nuvem; 
+4. Teste as requisições via Postman, Aplicativo Mobile ou Interface Web;
 
 ---
  
 ## Contato
 
 Para dúvidas, melhorias ou sugestões relacionadas ao projeto, entre em contato :)
+
