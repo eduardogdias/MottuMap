@@ -23,6 +23,20 @@ Veja abaixo como ficou o resultado das telas para gerenciar cada uma das entidad
 
 ---
 
+## Deploy da API
+
+O Deploy e o banco de daos estão na Azure. Acesse os links abaixo e coloque o endpoint no final.
+
+- Para retornar páginas ``HTML``:
+https://webapp-mottumap.azurewebsites.net/
+
+
+- Para retornar em ``JSON``:
+https://webapp-mottumap.azurewebsites.net/api/
+
+
+---
+
 ## Acesso / Usuários
 
 Foram definidos dois usuários, assim que a aplicação inicia, através de Migrations com **Flyway**:
@@ -35,7 +49,7 @@ Para acessar as telas, basta logar com um desses usuários:
 | admin@mottu.com   | 123456    | ADMIN             |
 | user@mottu.com    | 123456    | USER              |
 
-![](images/login.png)
+===========================
 
 Para acessar via Postman, coloque o Email e Senha na sessão de Basic Auth antes de cada requisição:
 
@@ -45,7 +59,7 @@ Para acessar via Postman, coloque o Email e Senha na sessão de Basic Auth antes
 
 ---
 
-## Configuração do Spring Initializr (dependências adicionadas para a Sprint 3)
+## Configuração do Spring Initializr
 ![Imagem do projeto](images/springinitializr.png)
  
 **Dependências:**
@@ -55,6 +69,7 @@ Para acessar via Postman, coloque o Email e Senha na sessão de Basic Auth antes
 - Lombok: Gerar automaticamente códigos repetitivos (mais otimizado).
 - Validation: Biblioteca de validação usada nos DTOs.
 - Oracle Driver: Banco de dados Oracle.
+- MS SQL: SQL Server na Azure.
 - Thymeleaf: Renderização de página HTML no navegador.
 - Spring Security: Autenticação e acesso aos endpoints.
 - Flyway: Versionamento do banco de dados.
@@ -255,19 +270,14 @@ Para acessar via Postman, coloque o Email e Senha na sessão de Basic Auth antes
  
 ## Instruções para Executar o Projeto
  
-1. Faça o clone desse repositório (```git clone https://github.com/eduardogdias/java_sprint3.git```);
+1. Faça o clone desse repositório;
 2. Tenha pelo menos o Java 17 (o projeto foi desenvolvido usando essa versão);
 3. Abra ele em sua IDE de preferência;
 4. Coloque as credenciais do Oracle (usuário e senha) no application.properties;
-5. Dê um Run na classe "Sprint3Application.java";
+5. Dê umion.jav Run na classe "Sprint3Applicata";
 6. Teste as requisições no Postman/Insomnia ou acessando via Web pelo `localhost:8080`.
  
----
- 
-## Visão Geral do Projeto
- 
-![](images/projeto.png)
- 
+
 ---
  
 ## Contato

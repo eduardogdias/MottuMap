@@ -22,7 +22,7 @@ port=8080
 #ACI
 NOME_ACR="acr$NAME"
 NOME_REPOSITORY="repository$NAME"
-skuACR=Basic
+skuACR=Standard
 
 
 echo "Criando RG"
@@ -35,7 +35,7 @@ az sql server firewall-rule create -g $RG -s $SERVER_NAME -n AllowAll --start-ip
  
 echo "Criando ACR"
 az acr create --resource-group $RG --name $NOME_ACR --sku $skuACR
-az acr update --name $NOME_ACR --resource-group $RG --admin-enabled true
+az acr update --name $NOME_ACR --resource-group $RG --admin-enabled true --public-network-enabled true --anonymous-pull-enabled true
 
 echo "Criando Plano e Web App"
 az appservice plan create -n $PLAN_NAME -g $RG --location $LOCATION --sku F1 --is-linux  &&
