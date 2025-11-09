@@ -33,7 +33,7 @@ az sql server create -l $LOCATION -g $RG -n $SERVER_NAME -u $USERNAME -p $PASSWO
 az sql db create -g $RG -s $SERVER_NAME -n $DBNAME --service-objective Basic --backup-storage-redundancy Local --zone-redundant false &&
 az sql server firewall-rule create -g $RG -s $SERVER_NAME -n AllowAll --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
  
-echo "Criando ACI"
+echo "Criando ACR"
 az acr create --resource-group $RG --name $NOME_ACR --sku $skuACR
 az acr update --name $NOME_ACR --resource-group $RG --admin-enabled true
 
