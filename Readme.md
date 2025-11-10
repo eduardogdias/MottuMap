@@ -68,7 +68,6 @@ Para acessar via Postman, coloque o Email e Senha na sessão de Basic Auth antes
 
 ![](images/loginPostman.png)
 
-**Obs:** todos os endpoints são acessados via **`localhost:8080`**
 
 ---
 
