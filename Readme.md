@@ -85,7 +85,7 @@ Para acessar via Postman, coloque o Email e Senha na sessão de Basic Auth antes
 - Spring Security: Autenticação e acesso aos endpoints.
 - Flyway: Versionamento do banco de dados.
  
-**Estrutura do Banco de Dados:**
+## Estrutura do Banco de Dados
 ![](images/banco.png)
  
 **Entidades:** Patio, Zona, Moto, Sensor, Historico
